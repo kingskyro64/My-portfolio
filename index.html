@@ -50,46 +50,23 @@
     transition:background 0.3s;
   }
 
-  .logo{
-    font-weight:900;font-size:17px;letter-spacing:-0.5px;
-    color:var(--text);display:flex;align-items:center;gap:8px;
-  }
-
-  .logo-dot{
-    width:8px;height:8px;border-radius:50%;background:var(--red);display:inline-block;
-  }
-
+  .logo{font-weight:900;font-size:17px;letter-spacing:-0.5px;color:var(--text);display:flex;align-items:center;gap:8px;}
+  .logo-dot{width:8px;height:8px;border-radius:50%;background:var(--red);display:inline-block;}
   .nav-right{display:flex;align-items:center;gap:1.75rem;}
-
   .nav-links{display:flex;gap:1.75rem;list-style:none;}
-
-  .nav-links a{
-    color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;transition:color 0.2s;
-  }
+  .nav-links a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;transition:color 0.2s;}
   .nav-links a:hover{color:var(--red);}
 
   .theme-btn{
-    background:var(--bg3);border:1px solid var(--border);
-    border-radius:20px;padding:5px 14px;
-    font-size:12px;font-family:'Inter',sans-serif;font-weight:600;
-    color:var(--muted);cursor:pointer;
-    display:flex;align-items:center;gap:6px;
-    transition:all 0.2s;
+    background:var(--bg3);border:1px solid var(--border);border-radius:20px;padding:5px 14px;
+    font-size:12px;font-family:'Inter',sans-serif;font-weight:600;color:var(--muted);cursor:pointer;
+    display:flex;align-items:center;gap:6px;transition:all 0.2s;
   }
   .theme-btn:hover{border-color:var(--red);color:var(--text);}
 
   section{padding:5.5rem 2.5rem;max-width:900px;margin:0 auto;}
-
-  .label{
-    font-size:11px;letter-spacing:0.15em;text-transform:uppercase;
-    color:var(--red);font-weight:700;margin-bottom:1rem;
-  }
-
-  h1{
-    font-size:clamp(2.5rem,6vw,4.5rem);font-weight:900;
-    letter-spacing:-2px;line-height:1.05;margin-bottom:1.25rem;
-  }
-
+  .label{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--red);font-weight:700;margin-bottom:1rem;}
+  h1{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:900;letter-spacing:-2px;line-height:1.05;margin-bottom:1.25rem;}
   h2{font-size:2rem;font-weight:900;letter-spacing:-1px;margin-bottom:2rem;}
 
   .hero{min-height:88vh;display:flex;flex-direction:column;justify-content:center;}
@@ -97,157 +74,134 @@
   .status{
     display:inline-flex;align-items:center;gap:8px;
     background:var(--bg2);border:1px solid var(--border);
-    border-radius:20px;padding:5px 16px;
-    font-size:12px;color:var(--muted);margin-bottom:2rem;width:fit-content;
+    border-radius:20px;padding:5px 16px;font-size:12px;color:var(--muted);
+    margin-bottom:2rem;width:fit-content;
   }
 
-  .dot{
-    width:6px;height:6px;border-radius:50%;background:#22c55e;
-    animation:blink 2s infinite;
-  }
-
+  .dot{width:6px;height:6px;border-radius:50%;background:#22c55e;animation:blink 2s infinite;}
   @keyframes blink{0%,100%{opacity:1;}50%{opacity:0.2;}}
 
-  .hero-sub{
-    font-size:15px;color:var(--muted);max-width:460px;
-    line-height:1.9;margin-bottom:2.5rem;
+  /* ── TYPEWRITER ── */
+  h1 .tw-line {
+    display: block;
+    overflow: hidden;
+    max-width: 0;
+    opacity: 0;
+    white-space: nowrap;
+    transition: max-width 0.6s ease, opacity 0.1s;
+  }
+  h1 .tw-line.show {
+    max-width: 100%;
+    opacity: 1;
   }
 
-  .hero-cta{display:flex;gap:12px;flex-wrap:wrap;}
-
-  .btn{
-    padding:11px 26px;border-radius:6px;
-    font-family:'Inter',sans-serif;font-size:13px;font-weight:600;
-    cursor:pointer;text-decoration:none;transition:all 0.2s;display:inline-block;
+  .cursor {
+    display: inline-block;
+    width: 3px;
+    height: 0.85em;
+    background: var(--red);
+    margin-left: 4px;
+    vertical-align: middle;
+    animation: cur-blink 0.75s step-end infinite;
   }
+  @keyframes cur-blink{0%,100%{opacity:1;}50%{opacity:0;}}
 
+  /* ── SCROLL FADE-UP ── */
+  .fade-up{opacity:0;transform:translateY(28px);transition:opacity 0.7s ease,transform 0.7s ease;}
+  .fade-up.visible{opacity:1;transform:translateY(0);}
+  .fade-up.d1{transition-delay:0.1s;}
+  .fade-up.d2{transition-delay:0.2s;}
+  .fade-up.d3{transition-delay:0.3s;}
+
+  /* hero sub + cta fade */
+  .hero-sub{font-size:15px;color:var(--muted);max-width:460px;line-height:1.9;margin-bottom:2.5rem;opacity:0;transform:translateY(10px);transition:opacity 0.6s ease,transform 0.6s ease;}
+  .hero-sub.show{opacity:1;transform:translateY(0);}
+  .hero-cta{display:flex;gap:12px;flex-wrap:wrap;opacity:0;transform:translateY(10px);transition:opacity 0.6s ease 0.15s,transform 0.6s ease 0.15s;}
+  .hero-cta.show{opacity:1;transform:translateY(0);}
+
+  .btn{padding:11px 26px;border-radius:6px;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;cursor:pointer;text-decoration:none;transition:all 0.2s;display:inline-block;}
   .btn-red{background:var(--red);color:#fff;border:none;}
   .btn-red:hover{background:var(--red2);}
-
   .btn-ghost{background:transparent;color:var(--text);border:1px solid var(--border);}
   .btn-ghost:hover{border-color:var(--red);color:var(--red);}
 
   .divider{height:1px;background:var(--border);max-width:900px;margin:0 auto;}
 
   .about-layout{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
-
   .about-text p{color:var(--muted);font-size:14px;line-height:1.9;margin-bottom:1rem;}
 
   .info-card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
-
-  .info-row{
-    display:flex;justify-content:space-between;align-items:center;
-    padding:13px 18px;border-bottom:1px solid var(--border);font-size:13px;
-  }
+  .info-row{display:flex;justify-content:space-between;align-items:center;padding:13px 18px;border-bottom:1px solid var(--border);font-size:13px;transition:background 0.2s;}
+  .info-row:hover{background:var(--bg3);}
   .info-row:last-child{border-bottom:none;}
   .info-label{color:var(--muted);}
   .info-val{font-weight:600;}
-  .info-val.red{color:var(--red);}
+  .info-val.red{color:limegreen;}
 
-  .projects-list{
-    display:flex;flex-direction:column;gap:1px;
-    background:var(--border);border:1px solid var(--border);
-    border-radius:10px;overflow:hidden;
-  }
+  .projects-list{display:flex;flex-direction:column;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
 
   .proj-item{
-    background:var(--bg);padding:1.75rem 2rem;transition:background 0.2s;
+    background:var(--bg);padding:1.75rem 2rem;
+    transition:background 0.2s,transform 0.2s;
     display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:start;
     text-decoration:none;color:inherit;
   }
-  .proj-item:hover{background:var(--bg2);}
-
+  .proj-item:hover{background:var(--bg2);transform:translateX(5px);}
   .proj-num{font-size:11px;color:var(--muted);margin-bottom:6px;font-weight:600;letter-spacing:0.08em;}
   .proj-title{font-weight:700;font-size:16px;margin-bottom:5px;}
   .proj-desc{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:12px;}
-
   .tags{display:flex;gap:6px;flex-wrap:wrap;}
-
-  .tag{
-    font-size:11px;padding:3px 9px;border-radius:4px;
-    border:1px solid var(--border);color:var(--muted);font-weight:500;
-  }
-
+  .tag{font-size:11px;padding:3px 9px;border-radius:4px;border:1px solid var(--border);color:var(--muted);font-weight:500;}
   .proj-arrow{font-size:20px;color:var(--muted);transition:all 0.2s;}
   .proj-item:hover .proj-arrow{color:var(--red);transform:translate(3px,-3px);}
 
   .skills-wrap{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;}
-
-  .skill-group-title{
-    font-size:12px;font-weight:700;letter-spacing:0.12em;
-    text-transform:uppercase;color:var(--muted);margin-bottom:1.25rem;
-  }
-
+  .skill-group-title{font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:1.25rem;}
   .skill-row{margin-bottom:18px;}
-
   .skill-top{display:flex;justify-content:space-between;font-size:13px;font-weight:500;margin-bottom:7px;}
   .skill-pct{color:var(--muted);font-size:12px;}
-
   .bar-bg{height:3px;background:var(--bg3);border-radius:2px;overflow:hidden;}
-  .bar-fill{height:100%;background:var(--red);border-radius:2px;width:0%;transition:width 1.3s cubic-bezier(0.16,1,0.3,1);}
+  .bar-fill{height:100%;background:var(--red);border-radius:2px;width:0%;transition:width 1.4s cubic-bezier(0.16,1,0.3,1);}
 
   .learning-badge{
     display:inline-flex;align-items:center;gap:6px;
     background:rgba(229,57,53,0.08);border:1px solid rgba(229,57,53,0.2);
     color:var(--red);border-radius:6px;padding:7px 14px;
     font-size:13px;font-weight:600;margin-top:1.5rem;
+    animation:badge-pulse 2.5s ease-in-out infinite;
   }
+  @keyframes badge-pulse{0%,100%{box-shadow:0 0 0 0 rgba(229,57,53,0.2);}50%{box-shadow:0 0 0 7px rgba(229,57,53,0);}}
 
   .progress-list{display:flex;flex-direction:column;gap:14px;}
-
-  .prog-card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:1.5rem;}
-
+  .prog-card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:1.5rem;transition:border-color 0.2s,transform 0.2s;}
+  .prog-card:hover{border-color:var(--red);transform:translateY(-2px);}
   .prog-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
   .prog-title{font-weight:700;font-size:15px;}
-
-  .badge{
-    font-size:10px;font-weight:700;letter-spacing:0.08em;
-    padding:3px 9px;border-radius:4px;text-transform:uppercase;
-  }
+  .badge{font-size:10px;font-weight:700;letter-spacing:0.08em;padding:3px 9px;border-radius:4px;text-transform:uppercase;}
   .badge-active{background:rgba(34,197,94,0.1);color:#22c55e;}
   .badge-soon{background:rgba(229,57,53,0.1);color:var(--red);}
-
   .prog-desc{font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:1rem;}
-
   .prog-bar-bg{height:5px;background:var(--bg3);border-radius:3px;overflow:hidden;margin-bottom:8px;}
   .prog-bar-fill{height:100%;border-radius:3px;width:0%;transition:width 1.4s cubic-bezier(0.16,1,0.3,1);}
   .fill-red{background:var(--red);}
   .fill-green{background:#22c55e;}
-
   .prog-bottom{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);}
 
-  .contact-grid{
-    display:grid;grid-template-columns:1fr 1fr;
-    gap:1px;background:var(--border);
-    border:1px solid var(--border);border-radius:10px;overflow:hidden;
-    margin-bottom:2rem;
-  }
-
-  .contact-tile{
-    background:var(--bg);padding:1.75rem;transition:background 0.2s;
-    text-decoration:none;color:inherit;display:block;
-  }
-  .contact-tile:hover{background:var(--bg2);}
-
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:2rem;}
+  .contact-tile{background:var(--bg);padding:1.75rem;transition:background 0.2s,transform 0.2s;text-decoration:none;color:inherit;display:block;}
+  .contact-tile:hover{background:var(--bg2);transform:scale(1.02);}
   .contact-icon{font-size:20px;margin-bottom:10px;}
   .contact-label{font-size:11px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:5px;}
   .contact-val{font-weight:700;font-size:14px;}
 
-  footer{
-    border-top:1px solid var(--border);padding:1.75rem 2.5rem;
-    display:flex;justify-content:space-between;align-items:center;
-    max-width:900px;margin:0 auto;font-size:12px;color:var(--muted);
-  }
-
+  footer{border-top:1px solid var(--border);padding:1.75rem 2.5rem;display:flex;justify-content:space-between;align-items:center;max-width:900px;margin:0 auto;font-size:12px;color:var(--muted);}
   .red-text{color:var(--red);}
 
   @media(max-width:640px){
     nav{padding:0 1.25rem;}
     .nav-links{display:none;}
     section{padding:4rem 1.25rem;}
-    .about-layout{grid-template-columns:1fr;}
-    .skills-wrap{grid-template-columns:1fr;}
-    .contact-grid{grid-template-columns:1fr;}
+    .about-layout,.skills-wrap,.contact-grid{grid-template-columns:1fr;}
     footer{flex-direction:column;gap:8px;text-align:center;}
   }
 </style>
@@ -255,10 +209,7 @@
 <body>
 
 <nav>
-  <div class="logo">
-    <span class="logo-dot"></span>
-    Al-amin Faisal
-  </div>
+  <div class="logo"><span class="logo-dot"></span>Al-amin Faisal</div>
   <div class="nav-right">
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
@@ -267,7 +218,7 @@
       <li><a href="#progress">Progress</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <button class="theme-btn" id="themeBtn" onclick="toggleTheme()">
+    <button class="theme-btn" onclick="toggleTheme()">
       <span id="themeIcon">☀️</span>
       <span id="themeLabel">Light mode</span>
     </button>
@@ -276,14 +227,16 @@
 
 <!-- HERO -->
 <section class="hero" id="home">
-  <div class="status">
-    <span class="dot"></span>
-    Learning & building — Kaduna, Nigeria
-  </div>
+  <div class="status"><span class="dot"></span>Learning & building — Kaduna, Nigeria</div>
   <div class="label">Frontend Developer</div>
-  <h1>Hi, I'm<br><span class="red-text">Al-amin.</span><br>I build for<br>the web.</h1>
-  <p class="hero-sub">13-year-old frontend developer from Kaduna, Nigeria. I craft pixel-perfect UIs with HTML & CSS and I'm currently leveling up with JavaScript.</p>
-  <div class="hero-cta">
+  <h1>
+    <span class="tw-line" id="tw1">Hi, I'm</span>
+    <span class="tw-line red-text" id="tw2">Al-amin.</span>
+    <span class="tw-line" id="tw3">I build for</span>
+    <span class="tw-line" id="tw4">the web.<span class="cursor" id="cursor"></span></span>
+  </h1>
+  <p class="hero-sub" id="heroSub">14-year-old frontend developer from Kaduna, Nigeria. I craft pixel-perfect UIs with HTML & CSS and I'm currently leveling up with JavaScript.</p>
+  <div class="hero-cta" id="heroCta">
     <a class="btn btn-red" href="#projects">See my work</a>
     <a class="btn btn-ghost" href="#contact">Get in touch</a>
   </div>
@@ -293,19 +246,20 @@
 
 <!-- ABOUT -->
 <section id="about">
-  <div class="label">About me</div>
-  <h2>Who I am</h2>
+  <div class="label fade-up">About me</div>
+  <h2 class="fade-up d1">Who I am</h2>
   <div class="about-layout">
-    <div class="about-text">
-      <p>I'm a self-taught frontend developer who started coding young and never stopped. I love turning designs into clean, responsive web pages using HTML and CSS — no frameworks, just fundamentals done right.</p>
-      <p>I practice on Frontend Mentor, push everything to GitHub, and I'm currently deep into learning JavaScript to make my projects truly interactive.</p>
+    <div class="about-text fade-up d2">
+      <p>I'm a self-taught frontend developer who started coding young and never stopped. I love turning designs into clean, responsive web pages using HTML and CSS — no frameworks, just fundamentals done right, but I'll learn some later.</p>
+      <p>I practice on Frontend Mentor and some other platforms, push everything to GitHub, and I'm currently into learning JavaScript to make my projects truly interactive and dynamic.</p>
     </div>
-    <div class="info-card">
+    <div class="info-card fade-up d3">
       <div class="info-row"><span class="info-label">Name</span><span class="info-val">Al-amin Faisal</span></div>
       <div class="info-row"><span class="info-label">Age</span><span class="info-val">13 years old</span></div>
       <div class="info-row"><span class="info-label">Location</span><span class="info-val">Kaduna, Nigeria 🇳🇬</span></div>
       <div class="info-row"><span class="info-label">Focus</span><span class="info-val">Frontend Dev</span></div>
-      <div class="info-row"><span class="info-label">Status</span><span class="info-val red">Open to collabs</span></div>
+      <div class="info-row"><span class="info-label">Status</span><span class="info-val red">Available 👍</span></div>
+      <div class="info-row"><span class="info-label">Goal</span><span class="info-val">Become a full-stack developer</span></div>
     </div>
   </div>
 </section>
@@ -314,10 +268,9 @@
 
 <!-- PROJECTS -->
 <section id="projects">
-  <div class="label">Selected Work</div>
-  <h2>Projects</h2>
-  <div class="projects-list">
-
+  <div class="label fade-up">Selected Work</div>
+  <h2 class="fade-up d1">Projects</h2>
+  <div class="projects-list fade-up d2">
     <a class="proj-item" href="https://github.com/kingskyro64/digitalbank-landing-page-master" target="_blank">
       <div>
         <div class="proj-num">01 — ⭐ Most Popular</div>
@@ -327,7 +280,6 @@
       </div>
       <div class="proj-arrow">↗</div>
     </a>
-
     <a class="proj-item" href="https://github.com/kingskyro64/nft-preview-card-component-main-main" target="_blank">
       <div>
         <div class="proj-num">02 —</div>
@@ -337,7 +289,6 @@
       </div>
       <div class="proj-arrow">↗</div>
     </a>
-
     <a class="proj-item" href="https://github.com/kingskyro64/Social-link-profile" target="_blank">
       <div>
         <div class="proj-num">03 —</div>
@@ -347,7 +298,6 @@
       </div>
       <div class="proj-arrow">↗</div>
     </a>
-
     <a class="proj-item" href="https://github.com/kingskyro64/Price-grid-main" target="_blank">
       <div>
         <div class="proj-num">04 —</div>
@@ -357,7 +307,6 @@
       </div>
       <div class="proj-arrow">↗</div>
     </a>
-
     <a class="proj-item" href="https://github.com/kingskyro64/four-grid-component" target="_blank">
       <div>
         <div class="proj-num">05 —</div>
@@ -367,7 +316,6 @@
       </div>
       <div class="proj-arrow">↗</div>
     </a>
-
     <a class="proj-item" href="https://github.com/kingskyro64/Stats-preview-main" target="_blank">
       <div>
         <div class="proj-num">06 —</div>
@@ -377,7 +325,6 @@
       </div>
       <div class="proj-arrow">↗</div>
     </a>
-
   </div>
 </section>
 
@@ -385,38 +332,38 @@
 
 <!-- SKILLS -->
 <section id="skills">
-  <div class="label">What I know</div>
-  <h2>Skills</h2>
+  <div class="label fade-up">What I know</div>
+  <h2 class="fade-up d1">Skills</h2>
   <div class="skills-wrap">
-    <div>
+    <div class="fade-up d2">
       <div class="skill-group-title">// Core</div>
       <div class="skill-row">
-        <div class="skill-top"><span>HTML</span><span class="skill-pct">Advanced · 90%</span></div>
-        <div class="bar-bg"><div class="bar-fill" data-w="90%"></div></div>
+        <div class="skill-top"><span>HTML</span><span class="skill-pct">Advanced</span></div>
+        <div class="bar-bg"><div class="bar-fill" data-w="100%"></div></div>
       </div>
       <div class="skill-row">
-        <div class="skill-top"><span>CSS</span><span class="skill-pct">Advanced · 85%</span></div>
-        <div class="bar-bg"><div class="bar-fill" data-w="85%"></div></div>
-      </div>
-      <div class="skill-row">
-        <div class="skill-top"><span>Responsive Design</span><span class="skill-pct">Strong · 80%</span></div>
+        <div class="skill-top"><span>CSS</span><span class="skill-pct">Advanced (still learning)</span></div>
         <div class="bar-bg"><div class="bar-fill" data-w="80%"></div></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-top"><span>Responsive Design</span><span class="skill-pct">Strong</span></div>
+        <div class="bar-bg"><div class="bar-fill" data-w="100%"></div></div>
       </div>
       <div class="learning-badge">⚡ Currently learning: JavaScript</div>
     </div>
-    <div>
+    <div class="fade-up d3">
       <div class="skill-group-title">// Tools & Workflow</div>
       <div class="skill-row">
-        <div class="skill-top"><span>GitHub</span><span class="skill-pct">Advanced · 85%</span></div>
-        <div class="bar-bg"><div class="bar-fill" data-w="85%"></div></div>
+        <div class="skill-top"><span>GitHub</span><span class="skill-pct">Advanced</span></div>
+        <div class="bar-bg"><div class="bar-fill" data-w="90%"></div></div>
       </div>
       <div class="skill-row">
-        <div class="skill-top"><span>Git</span><span class="skill-pct">Mid-level · 60%</span></div>
-        <div class="bar-bg"><div class="bar-fill" data-w="60%"></div></div>
+        <div class="skill-top"><span>Git</span><span class="skill-pct">Beginner</span></div>
+        <div class="bar-bg"><div class="bar-fill" data-w="35%"></div></div>
       </div>
       <div class="skill-row">
-        <div class="skill-top"><span>Frontend Mentor</span><span class="skill-pct">Active · 6+ Projects</span></div>
-        <div class="bar-bg"><div class="bar-fill" data-w="75%"></div></div>
+        <div class="skill-top"><span>Frontend Mentor</span><span class="skill-pct">Active · 20+ solutions</span></div>
+        <div class="bar-bg"><div class="bar-fill" data-w="100%"></div></div>
       </div>
     </div>
   </div>
@@ -426,38 +373,33 @@
 
 <!-- PROGRESS -->
 <section id="progress">
-  <div class="label">Currently shipping</div>
-  <h2>My progress</h2>
+  <div class="label fade-up">Currently shipping</div>
+  <h2 class="fade-up d1">My progress</h2>
   <div class="progress-list">
-
-    <div class="prog-card">
+    <div class="prog-card fade-up d1">
       <div class="prog-top"><div class="prog-title">Learning JavaScript</div><span class="badge badge-active">Active</span></div>
       <p class="prog-desc">Working through the fundamentals — variables, functions, DOM manipulation, events. Goal: add real interactivity to my Frontend Mentor projects.</p>
       <div class="prog-bar-bg"><div class="prog-bar-fill fill-red" data-w="35%"></div></div>
       <div class="prog-bottom"><span>Fundamentals phase</span><span>35%</span></div>
     </div>
-
-    <div class="prog-card">
+    <div class="prog-card fade-up d2">
       <div class="prog-top"><div class="prog-title">Git version control</div><span class="badge badge-active">Active</span></div>
       <p class="prog-desc">Already using GitHub for all projects. Now deepening my Git knowledge — branching, merging, conflict resolution, and commit discipline.</p>
-      <div class="prog-bar-bg"><div class="prog-bar-fill fill-red" data-w="55%"></div></div>
-      <div class="prog-bottom"><span>Mid-level — improving</span><span>55%</span></div>
+      <div class="prog-bar-bg"><div class="prog-bar-fill fill-red" data-w="35%"></div></div>
+      <div class="prog-bottom"><span>Beginner — improving</span><span>35%</span></div>
     </div>
-
-    <div class="prog-card">
+    <div class="prog-card fade-up d2">
       <div class="prog-top"><div class="prog-title">Frontend Mentor challenges</div><span class="badge badge-active">Ongoing</span></div>
-      <p class="prog-desc">Grinding through challenges to sharpen real-world skills. Currently at 6+ completed projects, pushing toward harder interactive challenges that need JS.</p>
-      <div class="prog-bar-bg"><div class="prog-bar-fill fill-green" data-w="50%"></div></div>
-      <div class="prog-bottom"><span>6+ projects done</span><span>Growing</span></div>
+      <p class="prog-desc">Grinding through challenges to sharpen real-world skills. Currently at 20+ completed projects, pushing toward harder interactive challenges that need JS.</p>
+      <div class="prog-bar-bg"><div class="prog-bar-fill fill-green" data-w="100%"></div></div>
+      <div class="prog-bottom"><span>20+ projects done</span><span>Growing</span></div>
     </div>
-
-    <div class="prog-card">
-      <div class="prog-top"><div class="prog-title">First JS-powered project</div><span class="badge badge-soon">Up next</span></div>
+    <div class="prog-card fade-up d3">
+      <div class="prog-top"><div class="prog-title">First JS-powered project</div><span class="badge badge-soon">Coming soon...</span></div>
       <p class="prog-desc">Once JavaScript clicks, the goal is to rebuild one of my existing Frontend Mentor projects with real interactivity — forms, toggles, and live state.</p>
       <div class="prog-bar-bg"><div class="prog-bar-fill fill-red" data-w="10%"></div></div>
       <div class="prog-bottom"><span>Planning stage</span><span>10%</span></div>
     </div>
-
   </div>
 </section>
 
@@ -465,9 +407,9 @@
 
 <!-- CONTACT -->
 <section id="contact">
-  <div class="label">Let's talk</div>
-  <h2>Contact</h2>
-  <div class="contact-grid">
+  <div class="label fade-up">Let's talk</div>
+  <h2 class="fade-up d1">Contact</h2>
+  <div class="contact-grid fade-up d2">
     <a class="contact-tile" href="mailto:kingskyro64@gmail.com">
       <div class="contact-icon">✉️</div>
       <div class="contact-label">Email</div>
@@ -493,12 +435,12 @@
 
 <footer>
   <span>© 2026 Al-amin Faisal — Kaduna, Nigeria 🇳🇬</span>
-  <span class="red-text">Building daily ⚡</span>
+  <span class="red-text">Active ⚡</span>
 </footer>
 
 <script>
+  /* ── THEME ── */
   let dark = true;
-
   function toggleTheme(){
     dark = !dark;
     document.body.classList.toggle('light', !dark);
@@ -506,17 +448,59 @@
     document.getElementById('themeLabel').textContent = dark ? 'Light mode' : 'Dark mode';
   }
 
-  const obs = new IntersectionObserver(entries => {
+  /* ── TYPEWRITER ── */
+  const twLines = [
+    {id:'tw1', delay:300, dur:420},
+    {id:'tw2', delay:820, dur:500},
+    {id:'tw3', delay:1420, dur:560},
+    {id:'tw4', delay:2080, dur:480},
+  ];
+
+  twLines.forEach(({id, delay, dur}, i) => {
+    const el = document.getElementById(id);
+    setTimeout(() => {
+      el.style.transition = `max-width ${dur}ms cubic-bezier(0.4,0,0.2,1), opacity 0.05s`;
+      el.classList.add('show');
+      // After last line reveal hero sub + cta
+      if(i === twLines.length - 1){
+        setTimeout(() => {
+          document.getElementById('heroSub').classList.add('show');
+          setTimeout(() => document.getElementById('heroCta').classList.add('show'), 200);
+          // hide cursor after a moment
+          setTimeout(() => {
+            const cur = document.getElementById('cursor');
+            if(cur) cur.style.display = 'none';
+          }, 2500);
+        }, dur + 100);
+      }
+    }, delay);
+  });
+
+  /* ── SCROLL ANIMATIONS ── */
+  const scrollObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        e.target.classList.add('visible');
+        scrollObs.unobserve(e.target);
+      }
+    });
+  }, {threshold: 0.12});
+
+  document.querySelectorAll('.fade-up').forEach(el => scrollObs.observe(el));
+
+  /* ── SKILL + PROGRESS BARS ── */
+  const barObs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if(e.isIntersecting){
         e.target.style.width = e.target.dataset.w;
-        obs.unobserve(e.target);
+        barObs.unobserve(e.target);
       }
     });
   }, {threshold: 0.3});
 
-  document.querySelectorAll('[data-w]').forEach(el => obs.observe(el));
+  document.querySelectorAll('[data-w]').forEach(el => barObs.observe(el));
 
+  /* ── SMOOTH SCROLL ── */
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
       e.preventDefault();
